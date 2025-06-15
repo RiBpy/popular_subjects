@@ -77,8 +77,8 @@ const Pagination = ({ links, onPageChange }) => {
               onClick={() => handlePageClick(link)}
               className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
                 link.active
-                  ? "bg-blue-600 text-white shadow-lg"
-                  : "text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 hover:text-gray-900"
+                  ? "bg-lime-600 text-white shadow-lg"
+                  : "text-gray-700 bg-white border border-gray-300 hover:bg-gray-200 hover:text-gray-900"
               }`}
             >
               {link.label}

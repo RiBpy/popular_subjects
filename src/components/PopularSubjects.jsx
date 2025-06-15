@@ -30,6 +30,7 @@ const PopularSubjects = () => {
       }
 
       const data = await response.json();
+      console.log("data: ", data);
 
       setSubjects(data.rows.data);
       setCurrentPage(data.rows.current_page);
@@ -83,9 +84,6 @@ const PopularSubjects = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">
-            🎓 Academic Excellence
-          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             <span className="text-orange-600">EXPLORE</span>{" "}
             <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
@@ -99,11 +97,11 @@ const PopularSubjects = () => {
 
           {/* Stats */}
           <div className="flex items-center justify-center space-x-8 text-sm text-gray-600">
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            <div className="flex items-center space-x-2 bg-orange-200 rounded-md py-2 px-4">
+              <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
               <span>{totalSubjects} Total Subjects</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 bg-blue-200 rounded-md py-2 px-4">
               <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
               <span>
                 Page {currentPage} of {totalPages}
