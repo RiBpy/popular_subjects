@@ -97,12 +97,12 @@ const PopularSubjects = () => {
 
           {/* Stats */}
           <div className="flex items-center justify-center space-x-8 text-sm text-gray-600">
-            <div className="flex items-center space-x-2 bg-orange-200 rounded-md py-2 px-4">
+            <div className="flex items-center space-x-2 bg-orange-200 rounded-[5px] py-2 px-4">
               <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
               <span>{totalSubjects} Total Subjects</span>
             </div>
-            <div className="flex items-center space-x-2 bg-blue-200 rounded-md py-2 px-4">
-              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+            <div className="flex items-center space-x-2 bg-lime-200 rounded-[5px] py-2 px-4">
+              <span className="w-2 h-2 bg-lime-500 rounded-full"></span>
               <span>
                 Page {currentPage} of {totalPages}
               </span>
