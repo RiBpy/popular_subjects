@@ -1,24 +1,36 @@
+// SubjectCard.jsx
+import React from "react";
 import NoImageSvg from "../helpers/ui/NoImageSvg";
 
 const SubjectCard = ({ subject }) => {
   const hasPhoto = subject.photo;
 
   return (
-    <div className="group rounded-xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300">
-      <div className="h-32 flex items-center justify-center bg-gray-100 group-hover:bg-gray-300 transition-colors duration-300 ">
+    <div className="group relative rounded-xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300">
+      <div className="relative h-32 flex items-center justify-center bg-gray-100 transition-colors duration-300 overflow-hidden">
         {hasPhoto ? (
           <img
             src={subject.photo}
             alt={subject.subject_area}
-            className="h-full object-contain transition-transform duration-500 group-hover:scale-105"
+            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
           />
-        ) : <NoImageSvg />}
+        ) : (
+          <NoImageSvg />
+        )}
+
+        {/* Animated Overlay (left to right) */}
+        <div className="absolute inset-0 bg-black bg-opacity-50 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out flex items-center justify-center">
+          <span className="text-white text-lg font-semibold">
+            {subject.subject_area}
+          </span>
+        </div>
       </div>
-      <h3 className="text-center text-sm font-semibold py-2 transition-colors duration-300 group-hover:text-black">
-        {subject.subject_area}
-      </h3>
+
       <div className="text-center py-2 px-3">
-        <button className="w-full text-sm font-medium py-2 bg-lime-600 text-white rounded transition-colors duration-300 group-hover:bg-orange-600 ">
+        <p className="text-black text-md font-normal py-3">
+         Subject: {subject.subject_area}
+        </p>
+        <button className="w-full text-sm font-medium py-2 bg-lime-600 text-white rounded transition-colors duration-300 hover:bg-orange-600 hover:text-white">
           Find Courses
         </button>
       </div>
