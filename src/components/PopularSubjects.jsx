@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import _ from "lodash";
+import { Book, BookOpen } from "react-feather";
 import SubjectCard from "./SubjectCard";
-import CardSkeleton from "./CardSkeleton";
+import CardSkeleton from "./ui/CardSkeleton";
 import Pagination from "./Pagination";
 import FetchErrorSvg from "./ui/customSvg/FetchErrorSvg";
 
@@ -64,16 +65,15 @@ const PopularSubjects = () => {
     setData((prev) => ({ ...prev, currentPage: page }));
   };
 
-  if (status.error) {
+  if (status?.error) {
     return (
       <div className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center">
           <div className="bg-red-50 border border-red-200 rounded-2xl min-h-[40vh]">
-            <FetchErrorSvg />
-            <p className="text-red-600 mb-4">{status.error}</p>
+            <FetchErrorSvg error={status?.error} />
             <button
               onClick={() => fetchSubjects(data.currentPage)}
-              className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center justify-center mx-auto"
+              className="bg-red-600 text-white px-6 py-3 mt-5 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center justify-center mx-auto"
             >
               Try Again
             </button>
@@ -85,7 +85,7 @@ const PopularSubjects = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className=" mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
@@ -100,16 +100,16 @@ const PopularSubjects = () => {
           </p>
 
           {/* Stats */}
-          <div className="flex items-center justify-center space-x-8 text-sm text-gray-600">
-            <div className="flex items-center space-x-2 bg-orange-200 rounded-[5px] py-2 px-4">
-              <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
-              <span>{data.totalSubjects} Total Subjects</span>
+          <div className="flex items-center justify-center sm:space-x-8 text-sm text-gray-600">
+            <div className="flex items-center space-x-2 py-2 px-4">
+              <Book size={20} className="text-orange-600" />
+              <p><span className="font-bold text-[20px]">{data?.totalSubjects}</span> Total Subjects</p>
             </div>
-            <div className="flex items-center space-x-2 bg-lime-200 rounded-[5px] py-2 px-4">
-              <span className="w-2 h-2 bg-lime-500 rounded-full"></span>
-              <span>
-                Page {data.currentPage} of {data.totalPages}
-              </span>
+            <div className="flex items-center space-x-2 rounded-[5px] py-2 px-4">
+              <BookOpen className="text-lime-600" size={20}/>
+              <p>
+                Page <span className="font-bold text-[20px]">{data.currentPage}</span> of <span className="font-bold text-[20px]">{data.totalPages}</span>
+              </p>
             </div>
           </div>
         </div>

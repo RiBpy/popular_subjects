@@ -55,7 +55,7 @@ const NoDataFoundSvg = ({
         No Data Found
       </text>
       <text x="120" y="190" textAnchor="middle" fontFamily="Arial" fontSize="12" fill="#6B7280">
-        Try a different search or filter
+        Please try different subject
       </text>
     </svg>
   )
