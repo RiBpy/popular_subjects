@@ -1,4 +1,4 @@
-import NoImageSvg from "../helpers/ui/NoImageSvg";
+import NoImageSvg from "./ui/customSvg/NoImageSvg";
 
 const SubjectCard = ({ subject }) => {
   const hasPhoto = subject?.photo;
