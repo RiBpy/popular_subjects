@@ -25,6 +25,7 @@ const PopularSubjects = () => {
     error: null,
   });
 
+  // Fetch subjects from API
   const fetchSubjects = async (page = 1) => {
     setStatus({ loading: true, error: null });
 
@@ -51,16 +52,19 @@ const PopularSubjects = () => {
     setStatus({ loading: false, error: null });
   };
 
+  // delay data fetching to avoid too many requests
   const debouncedFetchRef = useRef(
     _.debounce((page) => fetchSubjects(page), 300)
   );
 
+  // Initial fetch on component mount
   useEffect(() => {
     debouncedFetchRef.current(data.currentPage);
     // Scroll to top
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [data.currentPage]);
 
+  // Handle page change from pagination
   const handlePageChange = (page) => {
     setData((prev) => ({ ...prev, currentPage: page }));
   };

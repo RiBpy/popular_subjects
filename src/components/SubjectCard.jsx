@@ -1,3 +1,4 @@
+import { size } from "lodash";
 import { Calendar, Star, CheckCircle, AlertCircle } from "react-feather";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +27,7 @@ const route =useNavigate()
 
   // Stable randomized short description
   const description =
-    sampleDescriptions[subject?.id % sampleDescriptions.length];
+    sampleDescriptions[subject?.id % size(sampleDescriptions)];
 
   return (
     <div className="group relative rounded-xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300">
