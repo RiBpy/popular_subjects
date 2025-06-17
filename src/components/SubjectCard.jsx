@@ -1,5 +1,11 @@
 import { size } from "lodash";
-import { Calendar, Star, CheckCircle, AlertCircle } from "react-feather";
+import {
+  Calendar,
+  Star,
+  CheckCircle,
+  AlertCircle,
+  FileText,
+} from "react-feather";
 import { useNavigate } from "react-router-dom";
 
 // Short reusable descriptions
@@ -12,8 +18,7 @@ const sampleDescriptions = [
 ];
 
 const SubjectCard = ({ subject }) => {
-const route =useNavigate()
-
+  const route = useNavigate();
 
   const hasPhoto = subject?.photo;
   const subjectName = subject?.subject_area || "";
@@ -23,7 +28,8 @@ const route =useNavigate()
   const showComingSoon = subject?.department_id < 5;
 
   const imageUrl =
-    hasPhoto || "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
+    hasPhoto ||
+    "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80";
 
   // Stable randomized short description
   const description =
@@ -63,14 +69,30 @@ const route =useNavigate()
       </div>
 
       <div className="text-center py-3 px-4 space-y-2">
-        <h3 className="text-black text-md font-semibold">{subjectName}</h3>
+        <div className="flex justify-between items-start py-2">
+          <div className="space-y-1">
+            <h3 className="text-black text-md font-semibold text-start">{subjectName}</h3>
+            <div className="flex items-center gap-2 text-gray-600 text-sm">
+              <Calendar size={14} />
+              <span>{createdDate}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              {isPopular && (
+                <span className="flex items-center text-yellow-500 font-medium">
+                  <Star size={14} />
+                  Popular
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2 text-[14px]">
+              <FileText size={14} />
+              Department ID:{" "}
+              <span className="font-bold text-[14px]">
+                {subject.department_id}
+              </span>
+            </div>
+          </div>
 
-        <div className="flex items-center justify-center gap-2 text-gray-600 text-sm">
-          <Calendar size={14} />
-          <span>{createdDate}</span>
-        </div>
-
-        <div className="flex items-center justify-center gap-2 text-sm">
           {isActive ? (
             <span className="flex items-center text-green-600">
               <CheckCircle size={14} className="mr-1" />
@@ -82,19 +104,13 @@ const route =useNavigate()
               Inactive
             </span>
           )}
-          {isPopular && (
-            <span className="flex items-center text-yellow-500 font-medium ml-2">
-              <Star size={14} className="mr-1" />
-              Popular
-            </span>
-          )}
         </div>
 
-        <span className="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">
-          Department ID: {subject.department_id}
-        </span>
-
-        <button type="button" onClick={() => route(`/subject/${subject.id}`)} className="w-full mt-3 text-sm font-medium py-2 bg-lime-600 text-white rounded transition-colors duration-300 hover:bg-orange-600">
+        <button
+          type="button"
+          onClick={() => route(`/subject/${subject.id}`)}
+          className="w-full mt-3 text-sm font-medium py-2 bg-lime-600 text-white rounded transition-colors duration-300 hover:bg-orange-600"
+        >
           View Details
         </button>
       </div>
